@@ -27,6 +27,8 @@ public class Transition {
      */
     public Transition(Character symbol, State toState) {
     // TODO: Implement constructor
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+    this.symbol = symbol;
+    this.toState = toState;
     }
 }

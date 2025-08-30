@@ -25,7 +25,9 @@ public class NFA {
      */
     public NFA(State start, State end) {
         // TODO: Implement constructor
-        throw new UnsupportedOperationException("Not implemented");
+        //throw new UnsupportedOperationException("Not implemented");
+        startState = start;
+        endState = end;
     }
 
     /**
@@ -34,6 +36,7 @@ public class NFA {
      */
     public State getStartState() {
     // TODO: Implement getStartState
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+        return startState;
     }
 }

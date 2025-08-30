@@ -1,5 +1,6 @@
 package com.compiler.lexer.nfa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +44,10 @@ public class State {
      */
     public State() {
     // TODO: Implement constructor
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+        id = nextId++;
+        isFinal = false;
+        transitions = new ArrayList<Transition>();
     }
 
     /**
@@ -52,7 +56,8 @@ public class State {
      */
     public boolean isFinal() {
     // TODO: Implement isFinal
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+    return isFinal;
     }
 
     /**
@@ -62,7 +67,15 @@ public class State {
     public List<State> getEpsilonTransitions() {
     // TODO: Implement getEpsilonTransitions
     // Pseudocode: Iterate over transitions, if symbol is null, add to result list
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+        List<State> epsilonTransitions = new ArrayList<State>();
+        for (Transition t : transitions) {
+            if (t.symbol == null) {
+                epsilonTransitions.add(t.toState);
+            }
+        }
+
+        return epsilonTransitions;
     }
 
     /**
@@ -73,6 +86,14 @@ public class State {
     public List<State> getTransitions(char symbol) {
     // TODO: Implement getTransitions
     // Pseudocode: Iterate over transitions, if symbol matches, add to result list
-    throw new UnsupportedOperationException("Not implemented");
+    //throw new UnsupportedOperationException("Not implemented");
+        List<State> symbolTransitions = new ArrayList<State>();
+        for (Transition t : transitions) {
+            if(t.symbol == symbol) {
+                symbolTransitions.add(t.toState);
+            }
+        }
+
+        return symbolTransitions;
     }
 }

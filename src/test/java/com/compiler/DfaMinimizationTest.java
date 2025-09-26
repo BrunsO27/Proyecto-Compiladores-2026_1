@@ -20,7 +20,7 @@ public class DfaMinimizationTest {
         String regex = "a(b*|c+)?d";
         RegexParser parser = new RegexParser();
         NFA nfa = parser.parse(regex);
-        nfa.endState.isFinal = true;
+        nfa.endState.isFinal = true; // Linea añadida a las pruebas
         Set<Character> alphabet = new HashSet<>();
         alphabet.add('a');
         alphabet.add('b');

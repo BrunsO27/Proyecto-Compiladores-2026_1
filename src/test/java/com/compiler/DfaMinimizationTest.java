@@ -20,6 +20,7 @@ public class DfaMinimizationTest {
         String regex = "a(b*|c+)?d";
         RegexParser parser = new RegexParser();
         NFA nfa = parser.parse(regex);
+        nfa.endState.isFinal = true; // Linea añadida a las pruebas
         Set<Character> alphabet = new HashSet<>();
         alphabet.add('a');
         alphabet.add('b');
@@ -28,6 +29,7 @@ public class DfaMinimizationTest {
         DFA dfa = NfaToDfaConverter.convertNfaToDfa(nfa, alphabet);
         DFA minimized = DfaMinimizer.minimizeDfa(dfa, alphabet);
         DfaSimulator dfaSimulator = new DfaSimulator();
+        assertTrue(dfaSimulator.simulate(dfa, "abd"), "Original DFA should accept 'abd'");
         assertTrue(dfaSimulator.simulate(minimized, "abd"), "Minimized DFA should accept 'abd'");
         assertTrue(dfaSimulator.simulate(minimized, "acd"), "Minimized DFA should accept 'acd'");
         assertTrue(dfaSimulator.simulate(minimized, "abbbd"), "Minimized DFA should accept 'abbbd'");

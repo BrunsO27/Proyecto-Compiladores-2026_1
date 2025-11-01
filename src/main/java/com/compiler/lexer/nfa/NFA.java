@@ -1,5 +1,7 @@
 package com.compiler.lexer.nfa;
 
+import java.util.List;
+
 /**
  * Represents a Non-deterministic Finite Automaton (NFA) with a start and end state.
  * <p>
@@ -28,6 +30,17 @@ public class NFA {
         //throw new UnsupportedOperationException("Not implemented");
         startState = start;
         endState = end;
+    }
+
+    public static NFA union(List<NFA> nfas) {
+        State newStart = new State();
+        for (NFA nfa : nfas) {
+            // Transición epsilon del nuevo estado inicial a cada NFA
+            newStart.transitions.add(new com.compiler.lexer.nfa.Transition(null, nfa.startState));
+        }
+        // No hay un único estado final, pero cada NFA tiene su propio estado final marcado con TokenType
+        // El NFA combinado usa el nuevo estado inicial y no necesita un estado final único
+        return new NFA(newStart, null);
     }
 
     /**

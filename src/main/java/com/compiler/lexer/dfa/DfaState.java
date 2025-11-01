@@ -14,6 +14,8 @@ import com.compiler.lexer.nfa.State;
  * Provides methods for managing transitions, checking finality, and equality based on NFA state sets.
  */
 public class DfaState {
+
+    public String tokenTypeName;
     /**
      * Returns all transitions from this state.
      * @return Map of input symbols to destination DFA states.
@@ -47,7 +49,7 @@ public class DfaState {
         this.id = nextId++;
         this.nfaStates = nfaStates;
         this.transitions = new HashMap<>();
-
+        this.tokenTypeName = null;
         this.isFinal = nfaStates.stream().anyMatch(s -> s.isFinal);
     }
 
